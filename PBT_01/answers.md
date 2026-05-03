@@ -69,3 +69,135 @@ Lỗi 8: Dòng 25 & 26 — Lỗi semantic: Tiêu đề của bảng đang dùng 
 Lỗi 9: Dòng 36 — Lỗi semantic: Dùng hai thẻ `<main>` (một trang web chỉ nên có 1 thẻ `<main>` chính chứa nội dung cốt lõi). Đoạn này chứa sidebar nên dùng thẻ `<aside>` — Sửa `<main>` (và thẻ đóng tương ứng ở dòng 38) thành `<aside>` và `</aside>`
 Lỗi 10: Dòng 41 — Thiếu thẻ đóng đoạn văn — Sửa `<p>Copyright 2026` thành `<p>Copyright 2026</p>`
 Lỗi 11: Cuối file — Thiếu thẻ đóng gốc của tài liệu HTML — Thêm thẻ `</html>` vào dòng cuối cùng, sau `</body>`
+
+Bài B4: thegioididong.com
+
+1. 3 thẻ semantic HTML5 mà trang đó sử dụng: 
+thẻ `<header>` nằm ở phần đầu của khối nội dung hiển thị (`<header class="header v2024 theme-reunification sticky1 fixed1"...>`)
+thẻ `<footer>` nằm ở phần cuối trang (`<footer class="footer v2024"...>`)
+thẻ `<section>` nằm trong thẻ `<div class = "body-home">`
+
+ 2 thẻ mà trang đó KHÔNG dùng đúng semantic:
+ thẻ `<div class="header_main">`
+ thẻ `<div class="body-home">`
+
+ 2.  không có `<table>`
+
+ 3. Form đó có action=/tim-kiem, method - Quan sát thẻ `<form>` trong ảnh, ta thấy không có thuộc tính method nào được khai báo. Theo tiêu chuẩn của HTML, khi thẻ form bị thiếu thuộc tính method, trình duyệt sẽ tự động mặc định sử dụng phương thức GET
+
+ Câu C1: Thiết kế cấu trúc
+
+ <header>
+    <nav aria-label="main-navigation">
+        <ul>
+            <li>
+                <a href="/home">Trang chủ</a>
+            </li>
+            <li><a href="/products">Sản phẩm</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <nav aria-label="breadcrumb">
+        <ol>
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/dien-thoai">Điện thoại</a></li>
+            <li><span aria-current="page">iPhone 16</span></li>
+        </ol>
+    </nav>
+
+    <article class="product-detail">
+        
+        <section class="product-overview">
+            <figure class="product-gallery">
+                <img src="main-img.jpg" alt="Ảnh chính iPhone 16">
+                <ul class="thumbnails">
+                    <li><img src="thumb1.jpg" alt="Góc chụp mặt trước"></li>
+                    <li><img src="thumb2.jpg" alt="Góc chụp mặt sau"></li>
+                    <li><img src="thumb3.jpg" alt="Góc chụp cạnh viền"></li>
+                    <li><img src="thumb4.jpg" alt="Phụ kiện đi kèm"></li>
+                </ul>
+            </figure>
+
+            <div class="product-info">
+                <h1>iPhone 16 Pro Max 256GB</h1>
+                <p class="price">25.990.000đ</p>
+                <div class="rating">
+                    <span class="stars">★★★★★</span>
+                    <span>(150 đánh giá)</span>
+                </div>
+                <p class="description">Mô tả ngắn gọn về những ưu điểm nổi bật của sản phẩm...</p>
+            </div>
+        </section>
+
+        <section class="product-specifications">
+            <h2>Thông số kỹ thuật</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th scope="row">Màn hình</th>
+                        <td>6.7 inch, Super Retina XDR</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Chipset</th>
+                        <td>Apple A18 Pro</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="product-reviews">
+            <h2>Đánh giá từ khách hàng</h2>
+            <article class="review-item">
+                <h3>Nguyễn Văn A</h3>
+                <div class="review-rating"><span class="stars">★★★★★</span></div>
+                <p>Máy mượt, chụp ảnh siêu đẹp!</p>
+            </article>
+            
+            <article class="review-item">
+                <h3>Trần Thị B</h3>
+                <div class="review-rating"><span class="stars">★★★★☆</span></div>
+                <p>Giao hàng nhanh, đóng gói cẩn thận.</p>
+            </article>
+        </section>
+
+    </article>
+
+    <aside class="related-products">
+        <h2>Sản phẩm tương tự</h2>
+        <ul>
+            <li>
+                <a href="/iphone-15">
+                    <img src="ip15.jpg" alt="iPhone 15">
+                    <h3>iPhone 15 Pro Max</h3>
+                    <p class="price">20.990.000đ</p>
+                </a>
+            </li>
+            <li>
+                <a href="/samsung-s24">
+                    <img src="s24.jpg" alt="Samsung S24">
+                    <h3>Samsung Galaxy S24 Ultra</h3>
+                    <p class="price">24.990.000đ</p>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 ShopTLU. All rights reserved.</p>
+</footer>
+
+Câu C2: 
+
+Quan điểm "chỉ cần <div> và class là đủ" khá phổ biến vì thao tác nhanh, nhưng về lâu dài nó lại tạo ra những khoản "nợ kỹ thuật" rất lớn.
+
+Thứ nhất, xét về SEO (Tối ưu hóa công cụ tìm kiếm), các bot của Google không "nhìn" thấy giao diện đẹp hay xấu, chúng phân tích trang web dựa trên mã nguồn. Các thẻ Semantic như <main>, <article>, hay <h1> giúp "chỉ điểm" cho bot biết đâu là nội dung cốt lõi. Một trang web toàn <div> giống như một bài văn không có chia đoạn hay tiêu đề, khiến công cụ tìm kiếm gặp khó khăn trong việc đánh giá và làm giảm thứ hạng trang.
+
+Thứ hai, về Accessibility (Khả năng truy cập), trình đọc màn hình của người khiếm thị phụ thuộc hoàn toàn vào thẻ HTML để điều hướng. Nếu dùng thẻ <nav>, người dùng có thể bấm phím tắt để nhảy thẳng đến khu vực menu. Nếu dùng <div class="menu">, trình đọc không thể nhận diện khu vực đó là gì, buộc người khiếm thị phải nghe dò từng dòng rất mệt mỏi.
+
+Ví dụ chứng minh: Nếu bạn tạo nút bấm bằng <div class="btn" onclick="...">, bạn phải tự viết thêm thuộc tính tabindex="0" để người dùng có thể focus bằng phím Tab, đồng thời phải viết thêm JavaScript để bắt sự kiện khi họ ấn phím Enter hoặc Space. Trong khi đó, nếu dùng đúng thẻ <button>, trình duyệt đã hỗ trợ sẵn mọi tính năng này từ đầu. Dùng thẻ chuẩn thực chất tiết kiệm thời gian code hơn.
+
+Dù vậy, trường hợp thực tế <div> vẫn phù hợp nhất là khi bạn cần gom nhóm các phần tử thuần túy vì mục đích dàn trang (layout) hoặc tạo kiểu (CSS). Ví dụ: bạn tạo một thẻ <div class="flex-container"> bọc ngoài các thẻ sản phẩm để dàn chúng thành một hàng ngang. Khối hộp này không mang ý nghĩa nội dung ngữ nghĩa nào, nên dùng <div> ở đây là hoàn toàn chuẩn xác.
