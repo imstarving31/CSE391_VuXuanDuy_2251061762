@@ -56,5 +56,16 @@ HTML5 quy định mỗi thẻ sinh ra đều có "ngữ nghĩa" riêng. Thẻ <t
 
 Để tạo ra một layout phức tạp bằng table, bạn bắt buộc phải lồng ghép vô số các thẻ <table>, <tr>, <td> vào bên trong nhau (nested tables). Điều này làm cho file HTML trở nên dài dòng, rối rắm (spaghetti code), trang web tải chậm hơn và biến việc sửa đổi/nâng cấp giao diện sau này thành một "cơn ác mộng" đối với lập trình viên.
 
+bài B3:
 
-
+Lỗi 1: Dòng 1 — Sai cú pháp khai báo DOCTYPE — Sửa `<!DOCTYPE>` thành `<!DOCTYPE html>`
+Lỗi 2: Dòng 2 — Thiếu thẻ đóng của tiêu đề trang — Sửa `<title>Trang web` thành `<title>Trang web</title>`
+Lỗi 3: Dòng 3 — Giá trị charset sai định dạng chuẩn (nên có dấu gạch ngang) — Sửa `charset="utf8"` thành `charset="UTF-8"`
+Lỗi 4: Dòng 4 — Sai cú pháp thẻ đóng (viết nhầm thẻ mở) — Sửa `<h1>Welcome to ShopTLU<h1>` thành `<h1>Welcome to ShopTLU</h1>`
+Lỗi 5: Dòng 8 — Sai cú pháp thẻ đóng liên kết — Sửa `<a href="home">Trang chủ<a>` thành `<a href="home">Trang chủ</a>`
+Lỗi 6: Dòng 16 — Thiếu dấu ngoặc kép ở thuộc tính `src` và thiếu thuộc tính `alt` (lỗi semantic/accessibility) — Sửa `<img src=iphone.jpg>` thành `<img src="iphone.jpg" alt="iPhone 16 Pro">`
+Lỗi 7: Dòng 18 — Lỗi lồng thẻ (nesting) sai trật tự giữa `<p>` và `<b>` — Sửa `<b>25.990.000đ</p></b>` thành `<b>25.990.000đ</b></p>`
+Lỗi 8: Dòng 25 & 26 — Lỗi semantic: Tiêu đề của bảng đang dùng thẻ dữ liệu `<td>` thay vì thẻ tiêu đề `<th>` — Sửa `<td>Tên</td>` và `<td>Giá</td>` thành `<th>Tên</th>` và `<th>Giá</th>`
+Lỗi 9: Dòng 36 — Lỗi semantic: Dùng hai thẻ `<main>` (một trang web chỉ nên có 1 thẻ `<main>` chính chứa nội dung cốt lõi). Đoạn này chứa sidebar nên dùng thẻ `<aside>` — Sửa `<main>` (và thẻ đóng tương ứng ở dòng 38) thành `<aside>` và `</aside>`
+Lỗi 10: Dòng 41 — Thiếu thẻ đóng đoạn văn — Sửa `<p>Copyright 2026` thành `<p>Copyright 2026</p>`
+Lỗi 11: Cuối file — Thiếu thẻ đóng gốc của tài liệu HTML — Thêm thẻ `</html>` vào dòng cuối cùng, sau `</body>`
