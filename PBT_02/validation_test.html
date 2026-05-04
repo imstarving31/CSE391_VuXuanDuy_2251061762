@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBT02_A2</title>
+</head>
+<body>
+<form action="">
+        <!-- Trường hợp 1 -->
+<input type="text" required value="">   <!-- User để trống -->
+
+<!-- Trường hợp 2 -->
+<input type="email" value="abc">        <!-- User gõ "abc" -->
+
+<!-- Trường hợp 3 -->
+<input type="number" min="1" max="10" value="15"> <!-- User gõ 15 -->
+
+<!-- Trường hợp 4 -->
+<input type="text" pattern="[0-9]{10}" value="abc123"> <!-- User gõ "abc123" -->
+
+<!-- Trường hợp 5 -->
+<input type="password" minlength="8" value="123">  <!-- User gõ "123" -->
+<button type="submit">Submit</button>
+<fieldset>
+  <legend>Chọn phương thức thanh toán của bạn:</legend>
+
+  <input type="radio" id="cod" name="payment_method" value="cod">
+  <label for="cod">Thanh toán tiền mặt khi nhận hàng (COD)</label><br>
+
+  <input type="radio" id="bank" name="payment_method" value="bank">
+  <label for="bank">Chuyển khoản ngân hàng</label>
+</fieldset>
+</form>
+</body>
+</html>
