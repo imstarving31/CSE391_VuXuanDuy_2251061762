@@ -131,3 +131,85 @@ Trường hợp 2: DÙNG box-sizing: border-box;
 Tính toán: Tổng 3 cột = 250 + 500 + 250 = đúng 1000px.
 
 Giải thích: border-box ép trình duyệt tự động bóp nhỏ phần lõi (content) của mỗi cột lại để nhường chỗ cho lớp padding. Nhờ vậy, chiều rộng thực tế hiển thị trên màn hình của mỗi cột được giữ nguyên như khai báo ban đầu. Layout 3 cột nằm vừa vặn, hoàn hảo trong container 1000px.
+
+Bai B3:
+
+1. Liệt kê 10 rules + specificity score (Từ thấp đến cao):
+
+p — Specificity: (0, 0, 1)
+
+.text — Specificity: (0, 1, 0)
+
+p.text — Specificity: (0, 1, 1)
+
+.text.highlight — Specificity: (0, 2, 0)
+
+p.text.highlight — Specificity: (0, 2, 1)
+
+#demo — Specificity: (1, 0, 0)
+
+p#demo — Specificity: (1, 0, 1)
+
+#demo.text — Specificity: (1, 1, 0)
+
+#demo.text.highlight — Specificity: (1, 2, 0)
+
+p#demo.text.highlight — Specificity: (1, 2, 1)
+
+2. Element cuối cùng hiển thị màu gì? Tại sao?
+
+Kết quả: Element hiển thị màu red (đỏ).
+
+Giải thích: Trình duyệt áp dụng quy tắc Specificity (Độ ưu tiên). Selector p#demo.text.highlight có chứa 1 ID, 2 Class và 1 Thẻ, mang lại số điểm cao nhất là (1, 2, 1). Vì nó có điểm số tuyệt đối cao nhất trong cả 10 rules nên màu đỏ của nó sẽ đánh bại tất cả các màu khác để áp dụng lên thẻ <p>.
+
+4. Thay đổi thứ tự rules trong CSS file. Kết quả có đổi không? Giải thích.
+
+Kết quả: KHÔNG thay đổi. Element vẫn có màu đỏ.
+
+Giải thích: Thứ tự viết code từ trên xuống dưới trong file CSS chỉ có tác dụng quyết định kẻ chiến thắng khi 2 rules có cùng mức điểm Specificity. Còn trong trường hợp này, 10 rules đều có số điểm riêng biệt, và rule số 10 có điểm số áp đảo hoàn toàn (1, 2, 1). Do đó, dù bạn vứt rule mang màu đỏ lên dòng đầu tiên hay dòng cuối cùng của file CSS, nó vẫn luôn luôn giành chiến thắng nhờ luật Specificity.
+
+Câu C1: 
+
+1. Tính chiều rộng thực tế (content-box):
+
+Sidebar: 300px (width) + 20px * 2 (padding trái/phải) + 1px * 2 (border trái/phải) = 342px
+
+Content: 660px (width) + 30px * 2 (padding trái/phải) + 1px * 2 (border trái/phải) = 722px
+
+2. Giải thích tại sao layout bị vỡ:
+Tổng chiều rộng thực tế của cả 2 khối khi đặt cạnh nhau là: 342px + 722px = 1064px.
+Trong khi đó, thẻ bọc ngoài (.container) chỉ có chỗ chứa tối đa là 960px. Vì 1064px > 960px, không đủ không gian trên một hàng ngang nên khối .content bắt buộc phải rớt xuống dòng mới.
+
+3. Đưa ra 2 cách sửa khác nhau:
+
+Cách 1 (Dùng border-box): Thêm thuộc tính box-sizing: border-box; vào cả sidebar và content. Trình duyệt sẽ ép tổng chiều rộng về đúng bằng width khai báo ban đầu (300px + 660px = 960px), vừa khít với container.
+
+Cách 2 (Không dùng border-box - Trừ hao thủ công): Giữ nguyên mặc định (content-box), nhưng ta phải tự tính toán trừ đi phần padding và border để sửa lại width ở cả 2 khối:
+
+Sidebar width mới: 300 - 40 - 2 = 258px
+
+Content width mới: 660 - 60 - 2 = 598px
+
+Câu C2: 
+
+1. "Sản phẩm A" (h2) có font-size = 20px và color = green
+
+Giải thích font-size: Thẻ h2 này bị nhắm trúng bởi rule .card .title { font-size: 20px; }. Việc "chỉ đích danh" luôn thắng việc kế thừa (kế thừa 14px từ .container hay 16px từ body đều bị bỏ qua).
+
+Giải thích color: Xảy ra cuộc chiến độ ưu tiên (Specificity Battle). Rule #featured .title { color: red; } có ID nên điểm rất cao (1, 1, 0). Tuy nhiên, rule .highlight { color: green !important; } lại có "kim bài miễn tử" !important. Trong CSS, !important sẽ phá vỡ mọi quy tắc tính điểm và đè bẹp tất cả để giành chiến thắng. Do đó chữ biến thành màu xanh lá (green).
+
+2. "Mô tả sản phẩm" (p trong card featured) có color = blue
+
+Giải thích color: Thẻ <p> này bị nhắm trúng bởi rule .card p { color: inherit; }. Từ khóa inherit (kế thừa) là một lệnh ép buộc: "Cha mày màu gì thì mày phải lấy màu đó". Thẻ cha trực tiếp bọc nó là <div class="card">. Mà .card lại đang mang rule .card { color: blue; }. Vì vậy, nó kế thừa màu xanh lam (blue) từ thẻ cha.
+
+3. "Sản phẩm B" (h2) có font-size = 20px và color = blue
+
+Giải thích font-size: Tương tự Sản phẩm A, nó bị nhắm trúng trực tiếp bởi rule .card .title { font-size: 20px; }.
+
+Giải thích color: Thẻ h2 này không có bất kỳ rule nào trực tiếp set thuộc tính color cho nó (nó không có class highlight, cũng không nằm trong id featured). Theo luật Cascade, khi không bị ai quản lý, nó sẽ "hưởng xái" (kế thừa) màu từ thẻ cha gần nhất. Thẻ cha của nó là .card đang có màu blue, nên nó cũng có màu blue.
+
+4. "Mô tả sản phẩm B" (p.highlight) có color = green
+
+Giải thích color: Xảy ra tranh chấp giữa 2 rules áp dụng trực tiếp lên nó: .card p { color: inherit; } và .highlight { color: green !important; }. Tương tự câu 1, nhờ có quyền lực tuyệt đối của !important, màu green chiến thắng lệnh inherit.
+
+code kiểm chứng: cascade_test.html
